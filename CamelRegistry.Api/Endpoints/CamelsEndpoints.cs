@@ -2,6 +2,7 @@ using System;
 using CamelRegistry.Api.Data;
 using CamelRegistry.Api.Dtos;
 using CamelRegistry.Api.Models;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 namespace CamelRegistry.Api.Endpoints;
@@ -52,8 +53,14 @@ public static class CamelsEndpoints
             .WithDescription("Returns a single camel with the specified id. If no camel is found, returns a 404 Not Found response.");
         
         // POST /api/camels
-        group.MapPost("/", async (CreateCamelDto newCamelDto, CamelRegistryContext dbContext) =>
+        group.MapPost("/", async (CreateCamelDto newCamelDto, CamelRegistryContext dbContext, IValidator<CreateCamelDto> validator) =>
         {
+            var validationResult = await validator.ValidateAsync(newCamelDto);
+            if(!validationResult.IsValid)
+            {
+                return Results.BadRequest(validationResult.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
+            }
+
             Camel camel = new()
             {
                 Name = newCamelDto.Name,
@@ -79,8 +86,14 @@ public static class CamelsEndpoints
             .WithDescription("Creates a new camel in the registry with the provided information. Returns the created camel with its assigned id.");
         
         // PUT /api/camels/{id}
-        group.MapPut("/{id}", async (int id, UpdateCamelDto updateCamelDto, CamelRegistryContext dbContext) =>
+        group.MapPut("/{id}", async (int id, UpdateCamelDto updateCamelDto, CamelRegistryContext dbContext, IValidator<UpdateCamelDto> validator) =>
         {
+            var validationResult = await validator.ValidateAsync(updateCamelDto);
+            if (!validationResult.IsValid)
+            {
+                return Results.BadRequest(validationResult.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
+            }
+
             var camel = await dbContext.Camels.FindAsync(id);
 
             if (camel is null)
