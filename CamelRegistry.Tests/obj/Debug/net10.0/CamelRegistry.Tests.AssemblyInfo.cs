@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CamelRegistry.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21fd0ab6b84d3aeb55799b7a3d0cca57cd051a68")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26009b45d49083ead258852198f2ab34206ef3a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("CamelRegistry.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CamelRegistry.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

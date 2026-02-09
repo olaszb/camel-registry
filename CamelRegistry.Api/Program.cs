@@ -28,3 +28,6 @@ app.MapCamelsEndpoints();
 await app.MigrateDbAsync();
 
 app.Run();
+
+
+public partial class Program { }

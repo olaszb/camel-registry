@@ -10,7 +10,7 @@ public class ValidatorTest
    public void Validator_ShouldFail_WhenHumpCountIsThree()
     {
         var validator = new CreateCamelValidator();
-        var dto = new CreateCamelDto("Test Camel", "Brown", 3, DateTime.UtcNow);
+        var dto = new CreateCamelDto("Test Camel", "Brown", 3, DateTime.UtcNow.AddMinutes(-1));
 
         var result = validator.Validate(dto);
 
@@ -24,7 +24,7 @@ public class ValidatorTest
     public void Validator_ShouldPass_WhenHumpCountIsOneOrTwo(int humpCount)
     {
         var validator = new CreateCamelValidator();
-        var dto = new CreateCamelDto("Test Camel", "Brown", humpCount, DateTime.UtcNow);
+        var dto = new CreateCamelDto("Test Camel", "Brown", humpCount, DateTime.UtcNow.AddMinutes(-1));
 
         var result = validator.Validate(dto);
 
@@ -58,7 +58,7 @@ public class ValidatorTest
     public void Validator_ShouldFail_WhenNameIsEmpty()
     {
         var validator = new CreateCamelValidator();
-        var dto = new CreateCamelDto("", "Brown", 1, DateTime.UtcNow);
+        var dto = new CreateCamelDto("", "Brown", 1, DateTime.UtcNow.AddDays(-1));
 
         var result = validator.Validate(dto);
 

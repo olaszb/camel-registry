@@ -1,6 +1,6 @@
 GET http://localhost:5128/api/camels
 ###
-GET http://localhost:5128/api/camels/2
+GET http://localhost:5128/api/camels/1
 ###
 POST http://localhost:5128/api/camels
 Content-Type: application/json
