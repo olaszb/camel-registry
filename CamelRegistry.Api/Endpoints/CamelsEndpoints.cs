@@ -58,7 +58,7 @@ public static class CamelsEndpoints
             var validationResult = await validator.ValidateAsync(newCamelDto);
             if(!validationResult.IsValid)
             {
-                return Results.BadRequest(validationResult.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
+                return Results.ValidationProblem(validationResult.ToDictionary());
             }
 
             Camel camel = new()
@@ -91,7 +91,7 @@ public static class CamelsEndpoints
             var validationResult = await validator.ValidateAsync(updateCamelDto);
             if (!validationResult.IsValid)
             {
-                return Results.BadRequest(validationResult.Errors.Select(e => new { e.PropertyName, e.ErrorMessage }));
+                return Results.ValidationProblem(validationResult.ToDictionary());
             }
 
             var camel = await dbContext.Camels.FindAsync(id);

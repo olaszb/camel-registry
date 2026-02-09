@@ -25,6 +25,6 @@ app.UsePathBase("/api");
 
 app.MapCamelsEndpoints();
 
-app.MigrateDb();
+await app.MigrateDbAsync();
 
 app.Run();
